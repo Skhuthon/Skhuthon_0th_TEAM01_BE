@@ -59,7 +59,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
     private Cookie createCookie(String value) {
         Cookie cookie = new Cookie(AUTHORIZATION_COOKIE_NAME, value);
         cookie.setMaxAge(COOKIE_EXPIRATION_TIME_SECONDS);
-        //cookie.setSecure(true);
+        cookie.setSecure(true);
         cookie.setPath(DEFAULT_REDIRECT_URL);
         cookie.setHttpOnly(true);
         return cookie;
