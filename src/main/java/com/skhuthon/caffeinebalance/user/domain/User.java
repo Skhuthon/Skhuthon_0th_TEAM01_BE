@@ -60,4 +60,9 @@ public class User {
         this.name = name;
         this.email = email;
     }
+
+    public void updateHeightAndWeight(Double height, Double weight) {
+        this.height = height;
+        this.weight = weight;
+    }
 }

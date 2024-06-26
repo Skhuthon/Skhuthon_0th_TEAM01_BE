@@ -26,7 +26,7 @@ public class SecurityConfig {
             "/"
     };
 
-    private static final String ALLOWED_ORIGIN = "http://localhost:3000";
+    private static final String ALLOWED_ORIGIN = "http://localhost:8080/swagger-ui/index.html#/";
     private static final String ALLOWED_METHODS_ALL = "*";
     private static final String ALLOWED_HEADERS_ALL = "*";
     private static final long MAX_AGE_SECONDS = 3600L;
