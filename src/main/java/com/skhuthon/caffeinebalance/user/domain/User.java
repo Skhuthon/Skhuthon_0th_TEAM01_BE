@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "user_info")
+@Table(name = "User")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,10 +51,10 @@ public class User {
     private int canCaffeineIntakeAmount;
 
     @Column(name = "height")
-    private Double height;
+    private double height;
 
     @Column(name = "weight")
-    private Double weight;
+    private double weight;
 
     public void update(String name, String email) {
         this.name = name;
