@@ -8,19 +8,14 @@ import lombok.Getter;
 @Getter
 @Builder
 public class UserResponseDTO {
-    @NotNull(message = "username은 null이 될 수 없습니다.")
     private String username;
 
-    @NotNull(message = "name은 null이 될 수 없습니다.")
     private String name;
 
-    @NotNull(message = "email은 null이 될 수 없습니다.")
     private String email;;
 
-    @NotNull(message = "profile은 null이 될 수 없습니다.")
     private String profile;
 
-    @NotNull(message = "role은 null이 될 수 없습니다.")
     private String role;
 
     public static UserResponseDTO fromEntity(User user) {
