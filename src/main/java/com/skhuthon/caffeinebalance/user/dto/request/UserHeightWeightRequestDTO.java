@@ -1,10 +1,6 @@
 package com.skhuthon.caffeinebalance.user.dto.request;
 
-import lombok.Getter;
+import jakarta.validation.constraints.NotBlank;
 
-@Getter
-public class UserHeightWeightRequestDTO {
-    private Double height;
-    private Double weight;
-
+public record UserHeightWeightRequestDTO(@NotBlank double height, @NotBlank double weight) {
 }
