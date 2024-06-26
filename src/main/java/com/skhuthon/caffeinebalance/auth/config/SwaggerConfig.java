@@ -12,8 +12,8 @@ public class SwaggerConfig {
 
         Info info = new Info()
                 .version("v1.0.0")
-                .title("oauth API")
-                .description("oauth API 목록입니다.");
+                .title("CaffeineBalance API")
+                .description("CaffeineBalance 목록입니다.");
 
         return new OpenAPI()
                 .info(info);
