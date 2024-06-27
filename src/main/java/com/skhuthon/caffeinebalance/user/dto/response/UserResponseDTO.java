@@ -1,7 +1,6 @@
 package com.skhuthon.caffeinebalance.user.dto.response;
 
 import com.skhuthon.caffeinebalance.user.domain.User;
-import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 

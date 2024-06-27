@@ -6,7 +6,6 @@ import com.skhuthon.caffeinebalance.auth.jwt.JWTFilter;
 import com.skhuthon.caffeinebalance.auth.jwt.JWTUtil;
 import com.skhuthon.caffeinebalance.auth.oauth2.CustomSuccessHandler;
 import com.skhuthon.caffeinebalance.auth.service.CustomOAuth2UserService;
-import java.util.List;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,7 +13,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 
 import java.util.Collections;

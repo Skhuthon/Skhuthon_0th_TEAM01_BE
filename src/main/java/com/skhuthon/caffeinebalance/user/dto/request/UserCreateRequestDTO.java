@@ -3,7 +3,6 @@ package com.skhuthon.caffeinebalance.user.dto.request;
 import com.skhuthon.caffeinebalance.auth.dto.OAuth2Response;
 import com.skhuthon.caffeinebalance.user.domain.Role;
 import com.skhuthon.caffeinebalance.user.domain.User;
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
