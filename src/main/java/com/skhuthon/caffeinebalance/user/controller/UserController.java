@@ -25,14 +25,14 @@ public class UserController {
     private final UserService userService;
 
     @Operation(
-            summary = "사용자 정보 조회",
-            description = "사용자의 정보를 조회합니다.",
+            summary = "마이페이지 조회",
+            description = "마이페이지 조회합니다.",
             responses = {
                     @ApiResponse(responseCode = "200", description = "요청 성공"),
                     @ApiResponse(responseCode = "400", description = "잘못된 요청"),
                     @ApiResponse(responseCode = "500", description = "관리자 문의")
             })
-    @GetMapping("/getuser")
+    @GetMapping
     public ResponseEntity<UserResponseDTO> getUserInfo() {
         UserResponseDTO userResponseDTO = userService.getUserInfo();
         return new ResponseEntity<>(userResponseDTO, HttpStatus.OK);
