@@ -15,8 +15,6 @@ import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationF
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 
-import java.util.Collections;
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
