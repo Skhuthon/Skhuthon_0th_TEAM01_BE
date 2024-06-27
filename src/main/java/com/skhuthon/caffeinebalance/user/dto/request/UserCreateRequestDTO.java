@@ -31,8 +31,10 @@ public class UserCreateRequestDTO {
     @NotNull(message = "섭취 가능한 카페인 양은 null이 될 수 없습니다.")
     private int canCaffeineIntakeAmount;
 
+    @NotNull(message = "키는 null이 될 수 없습니다.")
     private double height;
 
+    @NotNull(message = "몸무게는 null이 될 수 없습니다.")
     private double weight;
 
 
