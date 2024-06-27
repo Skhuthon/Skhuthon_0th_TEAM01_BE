@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
     private final UserRepository userRepository;
 
+    @Transactional
     public UserHeightWeightResponseDTO updateHeightAndWeight(UserHeightWeightRequestDTO userHeightWeightRequestDTO) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || !authentication.isAuthenticated()) {
@@ -24,7 +26,6 @@ public class UserService {
         String username = authentication.getName();
         User user = userRepository.findByUsername(username);
         user.updateHeightAndWeight(userHeightWeightRequestDTO.height(), userHeightWeightRequestDTO.weight());
-        userRepository.save(user);
 
         return UserHeightWeightResponseDTO.from(user);
     }

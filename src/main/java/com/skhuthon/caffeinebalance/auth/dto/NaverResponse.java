@@ -8,8 +8,6 @@ public class NaverResponse implements OAuth2Response {
     private static final String EMAIL_KEY = "email";
     private static final String NAME_KEY = "name";
     private static final String PROFILE_IMAGE_KEY = "profile_image";
-
-
     private static final String INVALID_ATTRIBUTE_TYPE_MESSAGE = "잘못된 응답 속성 유형";
 
     private final Map<String, Object> attribute;
