@@ -2,20 +2,35 @@ package com.skhuthon.caffeinebalance.auth.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.servers.Server;
+import java.util.Arrays;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SwaggerConfig {
+
+    @Value("${server}")
+    private String prodUrl;
+
     @Bean
     public OpenAPI openAPI() {
-
         Info info = new Info()
-                .version("v1.0.0")
-                .title("CaffeineBalance API")
-                .description("CaffeineBalance 목록입니다.");
+                .title("CaffeineBalance API Document")
+                .version("v0.0.1")
+                .description("CaffeineBalance 문서");
+
+        Server prodServer = new Server();
+        prodServer.description("Production Server")
+                .url(prodUrl);
+
+        Server localServer = new Server();
+        localServer.description("Local Server")
+                .url("localhost:8080");
 
         return new OpenAPI()
-                .info(info);
+                .info(info)
+                .servers(Arrays.asList(prodServer, localServer));
     }
 }
