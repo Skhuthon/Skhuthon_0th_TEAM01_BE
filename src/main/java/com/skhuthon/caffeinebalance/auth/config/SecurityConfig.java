@@ -2,21 +2,20 @@ package com.skhuthon.caffeinebalance.auth.config;
 
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
-
 import com.skhuthon.caffeinebalance.auth.jwt.JWTFilter;
 import com.skhuthon.caffeinebalance.auth.jwt.JWTUtil;
 import com.skhuthon.caffeinebalance.auth.oauth2.CustomSuccessHandler;
 import com.skhuthon.caffeinebalance.auth.service.CustomOAuth2UserService;
-import java.util.Collections;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+
+import java.util.Collections;
 
 @Configuration
 @EnableWebSecurity
@@ -25,13 +24,6 @@ public class SecurityConfig {
     private static final String[] PERMITTED_URLS = {
             "/"
     };
-
-    private static final String ALLOWED_ORIGIN = "http://localhost:8080/swagger-ui/index.html#/";
-    private static final String ALLOWED_METHODS_ALL = "*";
-    private static final String ALLOWED_HEADERS_ALL = "*";
-    private static final long MAX_AGE_SECONDS = 3600L;
-    private static final String EXPOSED_COOKIE_HEADER = "Set-Cookie";
-    private static final String EXPOSED_AUTHORIZATION_HEADER = "Authorization";
 
     private final CustomOAuth2UserService customOAuth2UserService;
     private final CustomSuccessHandler customSuccessHandler;
@@ -46,27 +38,13 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        configureCors(http);
+        //configureCors(http);
         configureHttpSecurity(http);
         configureJwtFilter(http);
         configureOAuth2Login(http);
         configureAuthorization(http);
         configureSessionManagement(http);
         return http.build();
-    }
-
-    private void configureCors(HttpSecurity http) throws Exception {
-        http.cors(corsCustomizer -> corsCustomizer.configurationSource(request -> {
-            CorsConfiguration configuration = new CorsConfiguration();
-            configuration.setAllowedOrigins(Collections.singletonList(ALLOWED_ORIGIN));
-            configuration.setAllowedMethods(Collections.singletonList(ALLOWED_METHODS_ALL));
-            configuration.setAllowCredentials(true);
-            configuration.setAllowedHeaders(Collections.singletonList(ALLOWED_HEADERS_ALL));
-            configuration.setMaxAge(MAX_AGE_SECONDS);
-            configuration.setExposedHeaders(Collections.singletonList(EXPOSED_COOKIE_HEADER));
-            configuration.setExposedHeaders(Collections.singletonList(EXPOSED_AUTHORIZATION_HEADER));
-            return configuration;
-        }));
     }
 
     private void configureHttpSecurity(HttpSecurity http) throws Exception {
@@ -88,12 +66,12 @@ public class SecurityConfig {
     }
 
     private void configureAuthorization(HttpSecurity http) throws Exception {
-        for (String url : PERMITTED_URLS) {
-            http.authorizeHttpRequests(auth -> auth
-                    .requestMatchers(antMatcher(url)).permitAll()
-                    .anyRequest().authenticated());
-
-        }
+        http.authorizeHttpRequests(auth -> {
+            for (String url : PERMITTED_URLS) {
+                auth.requestMatchers(antMatcher(url)).permitAll();
+            }
+            auth.anyRequest().authenticated();
+        });
     }
 
     private void configureSessionManagement(HttpSecurity http) throws Exception {

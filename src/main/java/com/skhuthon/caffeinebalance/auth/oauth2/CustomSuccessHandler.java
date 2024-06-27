@@ -22,7 +22,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
     private static final String AUTHORIZATION_COOKIE_NAME = "Authorization";
     private static final int COOKIE_EXPIRATION_TIME_SECONDS = 60 * 60 * 60;
     private static final String DEFAULT_REDIRECT_URL = "/";
-    private static final String REDIRECT_URL = "http://localhost:3000/";
+    private static final String REDIRECT_URL = "http://localhost:8080/swagger-ui/index.html#/";
 
     public CustomSuccessHandler(JWTUtil jwtUtil) {
         this.jwtUtil = jwtUtil;
