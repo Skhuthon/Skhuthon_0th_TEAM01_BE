@@ -1,7 +1,6 @@
 package com.skhuthon.caffeinebalance.user.dto.response;
 
 import com.skhuthon.caffeinebalance.user.domain.User;
-import com.skhuthon.caffeinebalance.user.dto.request.UserHeightWeightRequestDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
