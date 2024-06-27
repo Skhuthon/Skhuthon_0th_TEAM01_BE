@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
@@ -22,7 +23,9 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
     private static final String AUTHORIZATION_COOKIE_NAME = "Authorization";
     private static final int COOKIE_EXPIRATION_TIME_SECONDS = 60 * 60 * 60;
     private static final String DEFAULT_REDIRECT_URL = "/";
-    private static final String REDIRECT_URL = "http://localhost:8080/swagger-ui/index.html#/";
+
+    @Value("${redirectUrl}")
+    private String redirectUrl;
 
     public CustomSuccessHandler(JWTUtil jwtUtil) {
         this.jwtUtil = jwtUtil;
@@ -66,6 +69,6 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
     }
 
     private void redirectToHomePage(HttpServletResponse response) throws IOException {
-        response.sendRedirect(REDIRECT_URL);
+        response.sendRedirect(redirectUrl);
     }
 }

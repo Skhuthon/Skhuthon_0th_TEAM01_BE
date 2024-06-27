@@ -45,6 +45,7 @@ spring:
     secret: ${JWT_SECRET}
 
 server: ${PRODUCTION_SERVER_URL}
+redirectUrl: ${REDIRECT_URL}
 
 # Swagger
 springdoc:
