@@ -8,7 +8,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,14 +20,18 @@ public class MainPageController {
 
     @GetMapping
     @Operation(
-            summary = "섭취한 카페인 양 수정.",
-            description = "섭취한 카페인 양을 수정합니다.",
+            summary = "섭취한 카페인 양 조회.",
+            description = "섭취한 카페인 양을 조회합니다.",
             responses = {
                     @ApiResponse(responseCode = "200", description = "요청 성공"),
                     @ApiResponse(responseCode = "400", description = "잘못된 요청"),
                     @ApiResponse(responseCode = "500", description = "관리자 문의")
             })
-    public ResponseEntity<MainPageResponseDTO> getMainPageInfo(@AuthenticationPrincipal User user) {
+    public ResponseEntity<MainPageResponseDTO> getMainPageInfo(User user) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated()) {
+            throw new IllegalArgumentException("인증되지 않은 사용자입니다.");
+        }
         MainPageResponseDTO mainPageResponseDTO = mainPageService.getUserCaffeineInfo(user);
         return new ResponseEntity<>(mainPageResponseDTO, HttpStatus.OK);
     }
