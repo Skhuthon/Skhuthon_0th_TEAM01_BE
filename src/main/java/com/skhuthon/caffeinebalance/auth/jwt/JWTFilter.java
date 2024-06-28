@@ -1,7 +1,7 @@
 package com.skhuthon.caffeinebalance.auth.jwt;
 
 import com.skhuthon.caffeinebalance.auth.dto.CustomOAuth2User;
-import com.skhuthon.caffeinebalance.user.dto.response.UserResponseDTO;
+import com.skhuthon.caffeinebalance.user.dto.response.JwtUserResponseDTO;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -82,7 +82,7 @@ public class JWTFilter extends OncePerRequestFilter {
         String username = jwtUtil.getUsername(token);
         String role = jwtUtil.getRole(token);
 
-        UserResponseDTO userDTO = UserResponseDTO.createFromJwt(username, role);
+        JwtUserResponseDTO userDTO = JwtUserResponseDTO.createFromJwt(username, role);
         CustomOAuth2User customOAuth2User = new CustomOAuth2User(userDTO);
 
         Authentication authToken = new UsernamePasswordAuthenticationToken(customOAuth2User, null,

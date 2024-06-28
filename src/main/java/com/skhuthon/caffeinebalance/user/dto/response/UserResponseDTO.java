@@ -1,36 +1,37 @@
 package com.skhuthon.caffeinebalance.user.dto.response;
 
 import com.skhuthon.caffeinebalance.user.domain.User;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserResponseDTO {
-    private String username;
-
     private String name;
-
-    private String email;;
-
+    private String email;
     private String profile;
-
     private String role;
+    private int recommendedCaffeineIntakeAmount;
+    private int todayCaffeineIntakeAmount;
+    private int canCaffeineIntakeAmount;
+    private double height;
+    private double weight;
 
-    public static UserResponseDTO fromEntity(User user) {
+    public static UserResponseDTO of(User user) {
         return UserResponseDTO.builder()
-                .username(user.getUsername())
                 .name(user.getName())
                 .email(user.getEmail())
                 .profile(user.getProfile())
                 .role(user.getRole().name())
-                .build();
-    }
-    public static UserResponseDTO createFromJwt(String username, String role) {
-        return UserResponseDTO.builder()
-                .username(username)
-                .name(username) // JWT에서 이름을 가져올 수 없는 경우, 사용자 이름을 대신 사용할 수 있음
-                .role(role)
+                .recommendedCaffeineIntakeAmount(user.getRecommendedCaffeineIntakeAmount())
+                .todayCaffeineIntakeAmount(user.getTodayCaffeineIntakeAmount())
+                .canCaffeineIntakeAmount(user.getCanCaffeineIntakeAmount())
+                .height(user.getHeight())
+                .weight(user.getWeight())
                 .build();
     }
 }

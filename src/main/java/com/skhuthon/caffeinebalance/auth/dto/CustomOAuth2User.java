@@ -1,6 +1,6 @@
 package com.skhuthon.caffeinebalance.auth.dto;
 
-import com.skhuthon.caffeinebalance.user.dto.response.UserResponseDTO;
+import com.skhuthon.caffeinebalance.user.dto.response.JwtUserResponseDTO;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
@@ -8,9 +8,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
 public class CustomOAuth2User implements OAuth2User {
-    private final UserResponseDTO userDTO;
+    private final JwtUserResponseDTO userDTO;
 
-    public CustomOAuth2User(UserResponseDTO userDTO) {
+    public CustomOAuth2User(JwtUserResponseDTO userDTO) {
         this.userDTO = userDTO;
     }
 

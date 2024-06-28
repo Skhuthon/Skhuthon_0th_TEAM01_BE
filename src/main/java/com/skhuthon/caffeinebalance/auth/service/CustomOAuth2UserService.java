@@ -7,7 +7,7 @@ import com.skhuthon.caffeinebalance.auth.dto.OAuth2Response;
 import com.skhuthon.caffeinebalance.user.domain.SocialType;
 import com.skhuthon.caffeinebalance.user.domain.User;
 import com.skhuthon.caffeinebalance.user.dto.request.UserCreateRequestDTO;
-import com.skhuthon.caffeinebalance.user.dto.response.UserResponseDTO;
+import com.skhuthon.caffeinebalance.user.dto.response.JwtUserResponseDTO;
 import com.skhuthon.caffeinebalance.user.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -47,14 +47,14 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
             User user = userRequestDto.toEntity();
             userRepository.save(user);
 
-            UserResponseDTO userResponseDto = UserResponseDTO.fromEntity(user);
-            return new CustomOAuth2User(userResponseDto);
+            JwtUserResponseDTO jwtUserResponseDto = JwtUserResponseDTO.fromEntity(user);
+            return new CustomOAuth2User(jwtUserResponseDto);
         }
 
         updateUserFromOAuth2Response(existData, oAuth2Response);
 
-        UserResponseDTO userResponseDto = UserResponseDTO.fromEntity(existData);
-        return new CustomOAuth2User(userResponseDto);
+        JwtUserResponseDTO jwtUserResponseDto = JwtUserResponseDTO.fromEntity(existData);
+        return new CustomOAuth2User(jwtUserResponseDto);
     }
 
     private OAuth2Response createOAuth2Response(String registrationId, Map<String, Object> attributes) {
