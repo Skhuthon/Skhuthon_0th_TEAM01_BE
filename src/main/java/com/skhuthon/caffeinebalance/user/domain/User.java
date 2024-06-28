@@ -39,29 +39,23 @@ public class User {
     @Column(name = "profile", columnDefinition = "TEXT")
     private String profile;
 
-    @Column(name = "recommended_caffeine_intake_amount")
-    private int recommendedCaffeineIntakeAmount;
+    @Column(name = "birthday")
+    private String birthday;
 
     @Column(name = "today_caffeine_intake_amount")
-    private int todayCaffeineIntakeAmount;
+    private Double todayCaffeineIntakeAmount;
 
     @Column(name = "can_caffeiene_intake_amount")
-    private int canCaffeineIntakeAmount;
+    private Double canCaffeineIntakeAmount;
 
-    @Column(name = "height")
-    private double height;
-
-    @Column(name = "weight")
-    private double weight;
 
     public void update(String name, String email) {
         this.name = name;
         this.email = email;
     }
 
-    public void updateHeightAndWeight(Double height, Double weight) {
-        this.height = height;
-        this.weight = weight;
+    public void updateCaffeineInformation(Double caffeine, Double canCaffeineIntakeAmount) {
+        this.todayCaffeineIntakeAmount += caffeine;
+        this.canCaffeineIntakeAmount = canCaffeineIntakeAmount;
     }
-
 }

@@ -26,16 +26,10 @@ public class UserCreateRequestDTO {
     private int recommendedCaffeineIntakeAmount;
 
     @NotNull(message = "오늘 먹은 카페인 양은 null이 될 수 없습니다.")
-    private int todayCaffeineIntakeAmount;
+    private Double todayCaffeineIntakeAmount;
 
     @NotNull(message = "섭취 가능한 카페인 양은 null이 될 수 없습니다.")
-    private int canCaffeineIntakeAmount;
-
-    @NotNull(message = "키는 null이 될 수 없습니다.")
-    private double height;
-
-    @NotNull(message = "몸무게는 null이 될 수 없습니다.")
-    private double weight;
+    private Double canCaffeineIntakeAmount;
 
 
     public User toEntity() {
@@ -45,7 +39,6 @@ public class UserCreateRequestDTO {
                 .email(email)
                 .role(Role.ROLE_USER)
                 .profile(profile)
-                .recommendedCaffeineIntakeAmount(recommendedCaffeineIntakeAmount)
                 .todayCaffeineIntakeAmount(todayCaffeineIntakeAmount)
                 .canCaffeineIntakeAmount(canCaffeineIntakeAmount)
                 .build();
@@ -57,11 +50,8 @@ public class UserCreateRequestDTO {
                 .name(oAuth2Response.getName())
                 .email(oAuth2Response.getEmail())
                 .profile(oAuth2Response.getProfileImage())
-                .recommendedCaffeineIntakeAmount(0)
-                .todayCaffeineIntakeAmount(0)
-                .canCaffeineIntakeAmount(0)
-                .weight(0D)
-                .height(0D)
+                .todayCaffeineIntakeAmount(0D)
+                .canCaffeineIntakeAmount(0D)
                 .build();
     }
 }
