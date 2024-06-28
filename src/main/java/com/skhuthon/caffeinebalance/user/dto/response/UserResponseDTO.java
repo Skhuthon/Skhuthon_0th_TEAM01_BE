@@ -14,24 +14,21 @@ public class UserResponseDTO {
     private String name;
     private String email;
     private String profile;
+    private String birthday;
     private String role;
-    private int recommendedCaffeineIntakeAmount;
-    private int todayCaffeineIntakeAmount;
-    private int canCaffeineIntakeAmount;
-    private double height;
-    private double weight;
+    private Double todayCaffeineIntakeAmount;
+    private Double canCaffeineIntakeAmount;
+
 
     public static UserResponseDTO of(User user) {
         return UserResponseDTO.builder()
                 .name(user.getName())
                 .email(user.getEmail())
                 .profile(user.getProfile())
+                .birthday(user.getBirthday())
                 .role(user.getRole().name())
-                .recommendedCaffeineIntakeAmount(user.getRecommendedCaffeineIntakeAmount())
                 .todayCaffeineIntakeAmount(user.getTodayCaffeineIntakeAmount())
                 .canCaffeineIntakeAmount(user.getCanCaffeineIntakeAmount())
-                .height(user.getHeight())
-                .weight(user.getWeight())
                 .build();
     }
 }
