@@ -1,5 +1,7 @@
 package com.skhuthon.caffeinebalance.auth.dto;
 
+import com.skhuthon.caffeinebalance.exception.CustomException;
+import com.skhuthon.caffeinebalance.exception.ErrorCode;
 import java.util.Map;
 
 public class NaverResponse implements OAuth2Response {
@@ -8,7 +10,6 @@ public class NaverResponse implements OAuth2Response {
     private static final String EMAIL_KEY = "email";
     private static final String NAME_KEY = "name";
     private static final String PROFILE_IMAGE_KEY = "profile_image";
-    private static final String INVALID_ATTRIBUTE_TYPE_MESSAGE = "잘못된 응답 속성 유형";
 
     private final Map<String, Object> attribute;
 
@@ -46,7 +47,7 @@ public class NaverResponse implements OAuth2Response {
         if (obj instanceof Map) {
             return (Map<String, Object>) obj;
         } else {
-            throw new IllegalArgumentException(INVALID_ATTRIBUTE_TYPE_MESSAGE);
+            throw new CustomException(ErrorCode.INVALID_ATTRIBUTE_TYPE_MESSAGE);
         }
     }
 }

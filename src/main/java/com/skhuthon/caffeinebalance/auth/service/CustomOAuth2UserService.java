@@ -17,10 +17,13 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Slf4j
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
+    private static final String SPACING = " ";
+
     private final UserRepository userRepository;
 
     public CustomOAuth2UserService(UserRepository userRepository) {
@@ -28,6 +31,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
     }
 
     @Override
+    @Transactional
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         OAuth2User oAuth2User = super.loadUser(userRequest);
         log.info(String.valueOf(oAuth2User));
@@ -39,21 +43,10 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
             return null; // 처리할 수 없는 등록 ID인 경우 null 반환
         }
 
-        String username = oAuth2Response.getProvider() + " " + oAuth2Response.getProviderId();
-        User existData = userRepository.findByUsername(username);
+        String username = oAuth2Response.getProvider() + SPACING + oAuth2Response.getProviderId();
+        User user = findOrCreateUser(username, oAuth2Response);
 
-        if (existData == null) {
-            UserCreateRequestDTO userRequestDto = UserCreateRequestDTO.fromOAuth2Response(oAuth2Response, username);
-            User user = userRequestDto.toEntity();
-            userRepository.save(user);
-
-            JwtUserResponseDTO jwtUserResponseDto = JwtUserResponseDTO.fromEntity(user);
-            return new CustomOAuth2User(jwtUserResponseDto);
-        }
-
-        updateUserFromOAuth2Response(existData, oAuth2Response);
-
-        JwtUserResponseDTO jwtUserResponseDto = JwtUserResponseDTO.fromEntity(existData);
+        JwtUserResponseDTO jwtUserResponseDto = JwtUserResponseDTO.fromEntity(user);
         return new CustomOAuth2User(jwtUserResponseDto);
     }
 
@@ -64,6 +57,23 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
             return new GoogleResponse(attributes);
         }
         return null;
+    }
+
+    private User findOrCreateUser(String username, OAuth2Response oAuth2Response) {
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            return createUser(username, oAuth2Response);
+        } else {
+            updateUserFromOAuth2Response(user, oAuth2Response);
+            return user;
+        }
+    }
+
+    private User createUser(String username, OAuth2Response oAuth2Response) {
+        UserCreateRequestDTO userRequestDto = UserCreateRequestDTO.fromOAuth2Response(oAuth2Response, username);
+        User user = userRequestDto.toEntity();
+        userRepository.save(user);
+        return user;
     }
 
     private void updateUserFromOAuth2Response(User user, OAuth2Response oAuth2Response) {

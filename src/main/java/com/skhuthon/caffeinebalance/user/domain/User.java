@@ -39,15 +39,11 @@ public class User {
     @Column(name = "profile", columnDefinition = "TEXT")
     private String profile;
 
-    @Column(name = "birthday")
-    private String birthday;
-
     @Column(name = "today_caffeine_intake_amount")
     private Double todayCaffeineIntakeAmount;
 
     @Column(name = "can_caffeiene_intake_amount")
     private Double canCaffeineIntakeAmount;
-
 
     public void update(String name, String email) {
         this.name = name;
