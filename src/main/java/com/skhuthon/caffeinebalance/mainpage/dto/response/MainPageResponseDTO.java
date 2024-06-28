@@ -9,4 +9,5 @@ public class MainPageResponseDTO {
     private int recommendedCaffeineIntakeAmount;
     private int todayCaffeineIntakeAmount;
     private int canCaffeineIntakeAmount;
+    private MainPageDrinkResponseDTO mainPageDrinkResponseDTO;
 }
