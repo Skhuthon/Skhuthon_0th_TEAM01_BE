@@ -1,6 +1,5 @@
 package com.skhuthon.caffeinebalance.user.domain;
 
-import com.skhuthon.caffeinebalance.caffeine.domain.Product;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -38,8 +37,6 @@ public class User {
     @Column(name = "can_caffeiene_intake_amount")
     private Double canCaffeineIntakeAmount;
 
-    @OneToOne
-    private Product recommedProduct;
     public void update(String name, String email) {
         this.name = name;
         this.email = email;
@@ -49,4 +46,6 @@ public class User {
         this.todayCaffeineIntakeAmount += caffeine;
         this.canCaffeineIntakeAmount = canCaffeineIntakeAmount;
     }
+
+
 }
