@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/product")
 @Tag(name = "CaffeineController", description = "음료 선택 페이지 관련 API")
 public class ProductController {
-    private final ProductService caffeineService;
+    private final ProductService productService;
 
     @GetMapping
     @Operation(
@@ -36,7 +36,7 @@ public class ProductController {
                     @ApiResponse(responseCode = "500", description = "관리자 문의")
             })
     public ResponseEntity<ProductResponseDTO.Brands> getBrand() {
-        ProductResponseDTO.Brands brands = caffeineService.getBrand();
+        ProductResponseDTO.Brands brands = productService.getBrand();
         return new ResponseEntity<>(brands, HttpStatus.OK);
     }
 
@@ -51,7 +51,7 @@ public class ProductController {
             })
     public ResponseEntity<ProductResponseDTO.Menu> getMenusByBrand(
             @Valid @RequestParam ProductRequestDTO.Brand brand) {
-        ProductResponseDTO.Menu menus = caffeineService.getMenuByBrand(brand);
+        ProductResponseDTO.Menu menus = productService.getMenuByBrand(brand);
         return new ResponseEntity<>(menus, HttpStatus.OK);
     }
 
@@ -67,7 +67,7 @@ public class ProductController {
     public ResponseEntity<ProductResponseDTO.Caffeine> getCaffeineByMenu(
             @Valid @RequestParam ProductRequestDTO.Brand brand,
             @Valid @RequestParam ProductRequestDTO.Menu menu) {
-        ProductResponseDTO.Caffeine caffeine = caffeineService.getCaffeineByMenu(brand, menu);
+        ProductResponseDTO.Caffeine caffeine = productService.getCaffeineByMenu(brand, menu);
         return new ResponseEntity<>(caffeine, HttpStatus.OK);
     }
 
@@ -81,7 +81,7 @@ public class ProductController {
                     @ApiResponse(responseCode = "500", description = "관리자 문의")
             })
     public ResponseEntity<ProductSearch> searchCaffeineByKeyword(@Valid @RequestParam KeyWord keyword) {
-        ProductSearch caffeineSearchDTO = caffeineService.getMenuSearchList(keyword);
+        ProductSearch caffeineSearchDTO = productService.getMenuSearchList(keyword);
         return new ResponseEntity<>(caffeineSearchDTO, HttpStatus.OK);
     }
 
@@ -96,7 +96,21 @@ public class ProductController {
                     @ApiResponse(responseCode = "500", description = "관리자 문의")
             })
     public ResponseEntity<UserCaffeineResponseDTO> updateCaffeineInfo(double caffeine) {
-        UserCaffeineResponseDTO userCaffeineResponseDTO = caffeineService.updateTodayCaffeineInformation(caffeine);
+        UserCaffeineResponseDTO userCaffeineResponseDTO = productService.updateTodayCaffeineInformation(caffeine);
         return new ResponseEntity<>(userCaffeineResponseDTO, HttpStatus.OK);
     }
+    @GetMapping("/recommend")
+    @Operation(
+            summary = "추천 음료 조회",
+            description = "오늘 먹은 카페인 양과 섭취 가능한 카페인 양을 바탕으로 추천합니다.",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "요청 성공"),
+                    @ApiResponse(responseCode = "400", description = "잘못된 요청"),
+                    @ApiResponse(responseCode = "500", description = "관리자 문의")
+            })
+    public ResponseEntity<ProductResponseDTO.RecommendProduct> getRecommendProduct() {
+        ProductResponseDTO.RecommendProduct recommendProduct = productService.getRecommendProduct();
+        return new ResponseEntity<>(recommendProduct, HttpStatus.OK);
+    }
+
 }
