@@ -1,7 +1,7 @@
 package com.skhuthon.caffeinebalance.auth.dto;
 
-import com.skhuthon.caffeinebalance.exception.CustomException;
-import com.skhuthon.caffeinebalance.exception.ErrorCode;
+import com.skhuthon.caffeinebalance.global.exception.CustomException;
+import com.skhuthon.caffeinebalance.global.exception.ErrorCode;
 import java.util.Map;
 
 public class NaverResponse implements OAuth2Response {
