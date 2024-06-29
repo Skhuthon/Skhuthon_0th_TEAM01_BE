@@ -1,22 +1,22 @@
-package com.skhuthon.caffeinebalance.Product.service;
+package com.skhuthon.caffeinebalance.product.service;
 
-import com.skhuthon.caffeinebalance.Product.domain.Product;
-import com.skhuthon.caffeinebalance.Product.dto.request.ProductRequestDTO;
-import com.skhuthon.caffeinebalance.Product.dto.response.ProductResponseDTO;
-import com.skhuthon.caffeinebalance.Product.dto.response.ProductResponseDTO.Products;
-import com.skhuthon.caffeinebalance.Product.repository.ProductRepository;
-import com.skhuthon.caffeinebalance.exception.CustomException;
-import com.skhuthon.caffeinebalance.exception.ErrorCode;
+import com.skhuthon.caffeinebalance.product.domain.Product;
+import com.skhuthon.caffeinebalance.product.dto.request.ProductRequestDTO;
+import com.skhuthon.caffeinebalance.product.dto.response.ProductResponseDTO;
+import com.skhuthon.caffeinebalance.product.dto.response.ProductResponseDTO.Products;
+import com.skhuthon.caffeinebalance.product.repository.ProductRepository;
+import com.skhuthon.caffeinebalance.global.exception.CustomException;
+import com.skhuthon.caffeinebalance.global.exception.ErrorCode;
 import com.skhuthon.caffeinebalance.user.domain.User;
 import com.skhuthon.caffeinebalance.user.dto.response.UserCaffeineResponseDTO;
 import com.skhuthon.caffeinebalance.user.repository.UserRepository;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -47,9 +47,15 @@ public class ProductService {
         return Products.from(caffeineList);
     }
 
+    @Transactional
     public UserCaffeineResponseDTO updateTodayCaffeineInformation(double caffeine) {
         User user = getCurrentUser();
-        user.updateCaffeineInformation(caffeine);
+        double canCaffeineIntakeAmount = user.getDailyRecommendedCaffeineAmount() - caffeine;
+        if (canCaffeineIntakeAmount < 0D) {
+            throw new CustomException(ErrorCode.CAFFEINE_CANNOT_BE_NEGATIVE);
+        }
+
+        user.updateCaffeineInformation(caffeine, canCaffeineIntakeAmount);
 
         return UserCaffeineResponseDTO.of(user);
     }
@@ -58,7 +64,6 @@ public class ProductService {
         User user = getCurrentUser();
         List<Product> products = productRepository.findRandomCaffeineByCanCaffeineIntakeAmount(user.getCanCaffeineIntakeAmount()).orElseThrow(
                 () -> new CustomException(ErrorCode.PRODUCT_NOT_FOUND));
-        System.out.println(products.size());
         Collections.shuffle(products);
         Product product = products.get(0);
 

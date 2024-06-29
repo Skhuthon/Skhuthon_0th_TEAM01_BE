@@ -1,7 +1,7 @@
 package com.skhuthon.caffeinebalance.user.service;
 
-import com.skhuthon.caffeinebalance.exception.CustomException;
-import com.skhuthon.caffeinebalance.exception.ErrorCode;
+import com.skhuthon.caffeinebalance.global.exception.CustomException;
+import com.skhuthon.caffeinebalance.global.exception.ErrorCode;
 import com.skhuthon.caffeinebalance.user.domain.User;
 import com.skhuthon.caffeinebalance.user.dto.response.UserResponseDTO;
 import com.skhuthon.caffeinebalance.user.repository.UserRepository;
@@ -31,7 +31,4 @@ public class UserService {
         String username = authentication.getName();
         return userRepository.findByUsername(username);
     }
-
-
-
 }
