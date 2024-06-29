@@ -19,7 +19,7 @@ public class JWTFilter extends OncePerRequestFilter {
     private static final String LOGIN_URI_PATTERN = "^/login(?:/.*)?$";
     private static final String OAUTH2_URI_PATTERN = "^/oauth2(?:/.*)?$";
     private static final String JOIN_URI_PATTERN = "^/join(?:/.*)?$";
-    private static final String PRODUCT_URI_PATTERN = "^/product(?:/.*)?$";
+    private static final String PRODUCT_URI_PATTERN = "^/product";
     private static final String PRODUCT_MENU_URI_PATTERN = "^/product/menu(?:/.*)?$";
     private static final String PRODUCT_CAFFEINE_URI_PATTERN = "^/product/caffeine(?:/.*)?$";
     private static final String PRODUCT_SEARCH_URI_PATTERN = "^/product/search(?:/.*)?$";
