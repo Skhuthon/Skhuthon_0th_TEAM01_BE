@@ -65,6 +65,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         //cookie.setSecure(true);
         cookie.setPath(DEFAULT_REDIRECT_URL);
         // cookie.setHttpOnly(true);
+        cookie.setAttribute("SameSite", "None");
         return cookie;
     }
 
