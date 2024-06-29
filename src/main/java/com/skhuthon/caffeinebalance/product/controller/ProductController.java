@@ -3,6 +3,7 @@ package com.skhuthon.caffeinebalance.product.controller;
 import com.skhuthon.caffeinebalance.product.dto.request.ProductRequestDTO;
 import com.skhuthon.caffeinebalance.product.dto.request.ProductRequestDTO.KeyWord;
 import com.skhuthon.caffeinebalance.product.dto.response.ProductResponseDTO;
+import com.skhuthon.caffeinebalance.product.dto.response.ProductResponseDTO.ProductInfo;
 import com.skhuthon.caffeinebalance.product.dto.response.ProductResponseDTO.Products;
 import com.skhuthon.caffeinebalance.product.service.ProductService;
 import com.skhuthon.caffeinebalance.user.dto.response.UserCaffeineResponseDTO;
@@ -10,6 +11,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -108,8 +110,15 @@ public class ProductController {
                     @ApiResponse(responseCode = "400", description = "잘못된 요청"),
                     @ApiResponse(responseCode = "500", description = "관리자 문의")
             })
-    public ResponseEntity<ProductResponseDTO.RecommendProduct> getRecommendProduct() {
-        ProductResponseDTO.RecommendProduct recommendProduct = productService.getRecommendProduct();
-        return new ResponseEntity<>(recommendProduct, HttpStatus.OK);
+    public ResponseEntity<ProductResponseDTO.ProductInfo> getRecommendProduct() {
+        ProductInfo productInfo = productService.getRecommendProduct();
+        return new ResponseEntity<>(productInfo, HttpStatus.OK);
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<List<ProductResponseDTO.ProductInfo>> getProductInfoByUser() {
+        List<ProductResponseDTO.ProductInfo> productInfos = productService.getProductInfoByUser();
+        return new ResponseEntity<>(productInfos, HttpStatus.OK);
+
     }
 }
