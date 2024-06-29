@@ -1,6 +1,9 @@
 package com.skhuthon.caffeinebalance.user.domain;
 
+import com.skhuthon.caffeinebalance.product.domain.Product;
 import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.*;
 
 @Entity
@@ -8,14 +11,21 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "User")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long id;
 
-    @Column(name = "username")
+    @ManyToMany
+    @JoinTable(
+            name = "User_Products",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private List<Product> products;
+
+    @Column(name = "username", nullable = false)
     private String username;
 
     @Column(name = "name", nullable = false)
@@ -40,6 +50,11 @@ public class User {
     @Column(name ="daily_recommended_Caffeine_Amount")
     private double dailyRecommendedCaffeineAmount;
 
+    @PrePersist
+    public void prePersist() {
+        this.products = this.products == null ? new ArrayList<>() : this.products;
+    }
+
     public void update(String name, String email) {
         this.name = name;
         this.email = email;
@@ -55,5 +70,9 @@ public class User {
         this.canCaffeineIntakeAmount = 400D;
         this.todayCaffeineIntakeAmount= 0D;
         this.dailyRecommendedCaffeineAmount = 400D;
+    }
+
+    public void resetProducts() {
+        this.products = new ArrayList<>();
     }
 }
