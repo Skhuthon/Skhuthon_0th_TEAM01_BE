@@ -3,6 +3,7 @@ package com.skhuthon.caffeinebalance.product.service;
 import com.skhuthon.caffeinebalance.product.domain.Product;
 import com.skhuthon.caffeinebalance.product.dto.request.ProductRequestDTO;
 import com.skhuthon.caffeinebalance.product.dto.response.ProductResponseDTO;
+import com.skhuthon.caffeinebalance.product.dto.response.ProductResponseDTO.ProductInfo;
 import com.skhuthon.caffeinebalance.product.dto.response.ProductResponseDTO.Products;
 import com.skhuthon.caffeinebalance.product.repository.ProductRepository;
 import com.skhuthon.caffeinebalance.global.exception.CustomException;
@@ -10,8 +11,10 @@ import com.skhuthon.caffeinebalance.global.exception.ErrorCode;
 import com.skhuthon.caffeinebalance.user.domain.User;
 import com.skhuthon.caffeinebalance.user.dto.response.UserCaffeineResponseDTO;
 import com.skhuthon.caffeinebalance.user.repository.UserRepository;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -60,13 +63,21 @@ public class ProductService {
         return UserCaffeineResponseDTO.of(user);
     }
 
-    public ProductResponseDTO.RecommendProduct getRecommendProduct() {
+    @Transactional
+    public List<ProductResponseDTO.ProductInfo> getProductInfoByUser() {
+        User user = fetchCurrentUser();
+        List<Product> products = user.getProducts();
+
+        return products.stream().map(ProductInfo::from).toList();
+    }
+
+    public ProductInfo getRecommendProduct() {
         User user = fetchCurrentUser();
         List<Product> products = fetchRecommendProduct(user.getCanCaffeineIntakeAmount());
         Collections.shuffle(products);
         Product product = products.get(0);
 
-        return ProductResponseDTO.RecommendProduct.from(product);
+        return ProductInfo.from(product);
     }
 
     private List<String> fetchBrands() {
