@@ -1,6 +1,8 @@
 package com.skhuthon.caffeinebalance.user.domain;
 
+import com.skhuthon.caffeinebalance.product.domain.Product;
 import jakarta.persistence.*;
+import java.util.List;
 import lombok.*;
 
 @Entity
@@ -8,12 +10,14 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "User")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long id;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private List<Product> products;
 
     @Column(name = "username")
     private String username;
@@ -56,4 +60,5 @@ public class User {
         this.todayCaffeineIntakeAmount= 0D;
         this.dailyRecommendedCaffeineAmount = 400D;
     }
+
 }
