@@ -2,6 +2,7 @@ package com.skhuthon.caffeinebalance.product.domain;
 
 import com.skhuthon.caffeinebalance.user.domain.User;
 import jakarta.persistence.*;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,9 +16,8 @@ public class Product {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user")
-    private User user;
+    @ManyToMany(mappedBy = "products")
+    private List<User> users;
 
     @Column(name = "brand")
     private String brand;
