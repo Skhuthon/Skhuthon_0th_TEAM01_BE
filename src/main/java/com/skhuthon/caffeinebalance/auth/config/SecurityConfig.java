@@ -20,7 +20,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 public class SecurityConfig {
 
     private static final String[] PERMITTED_URLS = {
-            "/"
+            "/product", "/product/menu", "/product/caffeine", "product/search"
     };
 
     private final CustomOAuth2UserService customOAuth2UserService;
