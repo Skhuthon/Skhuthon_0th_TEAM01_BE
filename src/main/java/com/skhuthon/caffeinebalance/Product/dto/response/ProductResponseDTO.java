@@ -13,7 +13,7 @@ public class ProductResponseDTO {
         @Schema(description = "브랜드 목록")
         private List<String> brands;
 
-        public static ProductResponseDTO.Brands of(List<String> brands) {
+        public static ProductResponseDTO.Brands from(List<String> brands) {
             return Brands.builder()
                     .brands(brands)
                     .build();
@@ -26,7 +26,7 @@ public class ProductResponseDTO {
         @Schema(description = "메뉴 목록")
         private List<String> menu;
 
-        public static ProductResponseDTO.Menu of(List<String> menu) {
+        public static ProductResponseDTO.Menu from(List<String> menu) {
             return Menu.builder()
                     .menu(menu)
                     .build();
@@ -37,9 +37,9 @@ public class ProductResponseDTO {
     @Builder
     public static class Caffeine {
         @Schema(description = "카페인 정보")
-        private Double caffeine;
+        private double caffeine;
 
-        public static Caffeine of(Double caffeine) {
+        public static ProductResponseDTO.Caffeine from(Double caffeine) {
             return Caffeine.builder()
                     .caffeine(caffeine)
                     .build();
@@ -48,12 +48,12 @@ public class ProductResponseDTO {
 
     @Getter
     @Builder
-    public static class ProductSearch {
+    public static class Products {
         @Schema(description = "음료 목록")
         private List<Product> products;
 
-        public static ProductSearch from(List<Product> caffeineList) {
-            return ProductSearch.builder()
+        public static ProductResponseDTO.Products from(List<Product> caffeineList) {
+            return Products.builder()
                     .products(caffeineList)
                     .build();
         }
@@ -62,14 +62,14 @@ public class ProductResponseDTO {
     @Getter
     @Builder
     public static class RecommendProduct {
-        private String menu;
         private String brand;
+        private String menu;
         private double caffeine;
 
-        public static RecommendProduct from(Product product) {
+        public static ProductResponseDTO.RecommendProduct from(Product product) {
             return RecommendProduct.builder()
-                    .menu(product.getMenu())
                     .brand(product.getBrand())
+                    .menu(product.getMenu())
                     .caffeine(product.getCaffeine())
                     .build();
         }
