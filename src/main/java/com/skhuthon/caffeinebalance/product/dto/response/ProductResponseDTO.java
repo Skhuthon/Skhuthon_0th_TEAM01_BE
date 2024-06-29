@@ -1,7 +1,10 @@
 package com.skhuthon.caffeinebalance.product.dto.response;
 
 import com.skhuthon.caffeinebalance.product.domain.Product;
+import com.skhuthon.caffeinebalance.user.domain.User;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.Column;
+import jakarta.persistence.ManyToMany;
 import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
@@ -36,12 +39,16 @@ public class ProductResponseDTO {
     @Getter
     @Builder
     public static class Caffeine {
+        @Schema(description = "id 정보")
+        private Long id;
+
         @Schema(description = "카페인 정보")
         private double caffeine;
 
-        public static ProductResponseDTO.Caffeine from(Double caffeine) {
+        public static ProductResponseDTO.Caffeine from(Product product) {
             return Caffeine.builder()
-                    .caffeine(caffeine)
+                    .id(product.getId())
+                    .caffeine(product.getCaffeine())
                     .build();
         }
     }
@@ -49,12 +56,24 @@ public class ProductResponseDTO {
     @Getter
     @Builder
     public static class Products {
-        @Schema(description = "음료 목록")
-        private List<Product> products;
+        @Schema(description = "id 정보")
+        private Long id;
 
-        public static ProductResponseDTO.Products from(List<Product> caffeineList) {
+        @Schema(description = "브랜드")
+        private String brand;
+
+        @Schema(description = "메뉴")
+        private String menu;
+
+        @Schema(description = "카페인")
+        private double caffeine;
+
+        public static ProductResponseDTO.Products from(Product product) {
             return Products.builder()
-                    .products(caffeineList)
+                    .id(product.getId())
+                    .brand(product.getBrand())
+                    .menu(product.getMenu())
+                    .caffeine(product.getCaffeine())
                     .build();
         }
     }
