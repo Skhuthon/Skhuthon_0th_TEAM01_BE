@@ -1,6 +1,6 @@
-package com.skhuthon.caffeinebalance.caffeine.repository;
+package com.skhuthon.caffeinebalance.Product.repository;
 
-import com.skhuthon.caffeinebalance.caffeine.domain.Product;
+import com.skhuthon.caffeinebalance.Product.domain.Product;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 

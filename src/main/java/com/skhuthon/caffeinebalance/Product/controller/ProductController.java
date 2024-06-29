@@ -1,10 +1,10 @@
-package com.skhuthon.caffeinebalance.caffeine.controller;
+package com.skhuthon.caffeinebalance.Product.controller;
 
-import com.skhuthon.caffeinebalance.caffeine.dto.request.ProductRequestDTO;
-import com.skhuthon.caffeinebalance.caffeine.dto.request.ProductRequestDTO.KeyWord;
-import com.skhuthon.caffeinebalance.caffeine.dto.response.ProductResponseDTO;
-import com.skhuthon.caffeinebalance.caffeine.dto.response.ProductResponseDTO.ProductSearch;
-import com.skhuthon.caffeinebalance.caffeine.service.ProductService;
+import com.skhuthon.caffeinebalance.Product.dto.request.ProductRequestDTO;
+import com.skhuthon.caffeinebalance.Product.dto.request.ProductRequestDTO.KeyWord;
+import com.skhuthon.caffeinebalance.Product.dto.response.ProductResponseDTO;
+import com.skhuthon.caffeinebalance.Product.dto.response.ProductResponseDTO.ProductSearch;
+import com.skhuthon.caffeinebalance.Product.service.ProductService;
 import com.skhuthon.caffeinebalance.user.dto.response.UserCaffeineResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -29,7 +29,7 @@ public class ProductController {
     @GetMapping
     @Operation(
             summary = "상품별 카페인 페이지 / 브랜드 목록 조회",
-            description = "브랜드 목록을 조회합니.",
+            description = "브랜드 목록을 조회합니다.",
             responses = {
                     @ApiResponse(responseCode = "200", description = "요청 성공"),
                     @ApiResponse(responseCode = "400", description = "잘못된 요청"),

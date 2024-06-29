@@ -10,11 +10,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class CorsMvcConfig implements WebMvcConfigurer {
     @Value("${serverUrl}")
     private String prodUrl;
+
     @Override
     public void addCorsMappings(CorsRegistry corsRegistry) {
         corsRegistry.addMapping("/**")
-                .allowedOrigins("http://localhost:3000",
+                .allowedOrigins(
                         "http://localhost:8080",
+                        "http://localhost:5173",
                         prodUrl)
                 .allowedMethods(
                         HttpMethod.GET.name(),
