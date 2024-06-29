@@ -3,7 +3,7 @@ package com.skhuthon.caffeinebalance.Product.controller;
 import com.skhuthon.caffeinebalance.Product.dto.request.ProductRequestDTO;
 import com.skhuthon.caffeinebalance.Product.dto.request.ProductRequestDTO.KeyWord;
 import com.skhuthon.caffeinebalance.Product.dto.response.ProductResponseDTO;
-import com.skhuthon.caffeinebalance.Product.dto.response.ProductResponseDTO.ProductSearch;
+import com.skhuthon.caffeinebalance.Product.dto.response.ProductResponseDTO.Products;
 import com.skhuthon.caffeinebalance.Product.service.ProductService;
 import com.skhuthon.caffeinebalance.user.dto.response.UserCaffeineResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
@@ -80,8 +80,8 @@ public class ProductController {
                     @ApiResponse(responseCode = "400", description = "잘못된 요청"),
                     @ApiResponse(responseCode = "500", description = "관리자 문의")
             })
-    public ResponseEntity<ProductSearch> searchCaffeineByKeyword(@Valid @RequestParam KeyWord keyword) {
-        ProductSearch caffeineSearchDTO = productService.getMenuSearchList(keyword);
+    public ResponseEntity<Products> searchCaffeineByKeyword(@Valid @RequestParam KeyWord keyword) {
+        Products caffeineSearchDTO = productService.getMenuSearchList(keyword);
         return new ResponseEntity<>(caffeineSearchDTO, HttpStatus.OK);
     }
 
@@ -112,5 +112,4 @@ public class ProductController {
         ProductResponseDTO.RecommendProduct recommendProduct = productService.getRecommendProduct();
         return new ResponseEntity<>(recommendProduct, HttpStatus.OK);
     }
-
 }
