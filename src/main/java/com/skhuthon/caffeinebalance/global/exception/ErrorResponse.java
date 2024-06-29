@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 @Getter
 @Builder
 public class ErrorResponse {
-
     private final LocalDateTime timestamp = LocalDateTime.now();
     private final int status;
     private final String error;
@@ -26,5 +25,4 @@ public class ErrorResponse {
                         .build()
                 );
     }
-
 }
