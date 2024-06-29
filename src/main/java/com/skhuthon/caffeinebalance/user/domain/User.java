@@ -2,6 +2,7 @@ package com.skhuthon.caffeinebalance.user.domain;
 
 import com.skhuthon.caffeinebalance.product.domain.Product;
 import jakarta.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.*;
 
@@ -16,10 +17,15 @@ public class User {
     @Column(name = "user_id")
     private Long id;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @ManyToMany
+    @JoinTable(
+            name = "User_Products",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
     private List<Product> products;
 
-    @Column(name = "username")
+    @Column(name = "username", nullable = false)
     private String username;
 
     @Column(name = "name", nullable = false)
@@ -44,6 +50,11 @@ public class User {
     @Column(name ="daily_recommended_Caffeine_Amount")
     private double dailyRecommendedCaffeineAmount;
 
+    @PrePersist
+    public void prePersist() {
+        this.products = this.products == null ? new ArrayList<>() : this.products;
+    }
+
     public void update(String name, String email) {
         this.name = name;
         this.email = email;
@@ -61,4 +72,7 @@ public class User {
         this.dailyRecommendedCaffeineAmount = 400D;
     }
 
+    public void resetProducts() {
+        this.products = new ArrayList<>();
+    }
 }
