@@ -37,6 +37,8 @@ public class User {
     @Column(name = "can_caffeiene_intake_amount")
     private double canCaffeineIntakeAmount;
 
+    private double dailyCaffeineIntake;
+
     public void update(String name, String email) {
         this.name = name;
         this.email = email;
@@ -47,5 +49,8 @@ public class User {
         this.canCaffeineIntakeAmount -= caffeine;
     }
 
+    public void resetDailyCaffeine() {
+        this.dailyCaffeineIntake = 0.0;
+    }
 
 }
