@@ -20,6 +20,7 @@ public class CaffeineResetScheduler {
         List<User> users = userRepository.findAll();
         for (User user : users) {
             user.resetDailyCaffeine();
+            user.resetProducts();
         }
     }
 }
