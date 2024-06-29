@@ -1,10 +1,10 @@
-package com.skhuthon.caffeinebalance.caffeine.service;
+package com.skhuthon.caffeinebalance.Product.service;
 
-import com.skhuthon.caffeinebalance.caffeine.domain.Product;
-import com.skhuthon.caffeinebalance.caffeine.dto.request.ProductRequestDTO;
-import com.skhuthon.caffeinebalance.caffeine.dto.response.ProductResponseDTO;
-import com.skhuthon.caffeinebalance.caffeine.dto.response.ProductResponseDTO.ProductSearch;
-import com.skhuthon.caffeinebalance.caffeine.repository.ProductRepository;
+import com.skhuthon.caffeinebalance.Product.domain.Product;
+import com.skhuthon.caffeinebalance.Product.dto.request.ProductRequestDTO;
+import com.skhuthon.caffeinebalance.Product.dto.response.ProductResponseDTO;
+import com.skhuthon.caffeinebalance.Product.dto.response.ProductResponseDTO.ProductSearch;
+import com.skhuthon.caffeinebalance.Product.repository.ProductRepository;
 import com.skhuthon.caffeinebalance.exception.CustomException;
 import com.skhuthon.caffeinebalance.exception.ErrorCode;
 import com.skhuthon.caffeinebalance.user.domain.User;

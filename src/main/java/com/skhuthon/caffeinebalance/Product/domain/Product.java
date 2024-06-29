@@ -1,4 +1,4 @@
-package com.skhuthon.caffeinebalance.caffeine.domain;
+package com.skhuthon.caffeinebalance.Product.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
