@@ -50,7 +50,8 @@ public class User {
     }
 
     public void resetDailyCaffeine() {
-        this.dailyCaffeineIntake = 0.0;
+        this.canCaffeineIntakeAmount = 400D;
+        this.dailyCaffeineIntake = 0D;
     }
 
 }
