@@ -1,13 +1,7 @@
 package com.skhuthon.caffeinebalance.user.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.skhuthon.caffeinebalance.caffeine.domain.Product;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -15,7 +9,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "user_info")
+@Table(name = "User")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,6 +38,8 @@ public class User {
     @Column(name = "can_caffeiene_intake_amount")
     private Double canCaffeineIntakeAmount;
 
+    @OneToOne
+    private Product recommedProduct;
     public void update(String name, String email) {
         this.name = name;
         this.email = email;
