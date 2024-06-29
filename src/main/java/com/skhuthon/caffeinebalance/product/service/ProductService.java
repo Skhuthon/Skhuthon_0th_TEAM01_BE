@@ -54,9 +54,6 @@ public class ProductService {
         User user = fetchCurrentUser();
 
         double canCaffeineIntakeAmount = user.getDailyRecommendedCaffeineAmount() - product.getCaffeine();
-        if (canCaffeineIntakeAmount < 0D) {
-            throw new CustomException(ErrorCode.CAFFEINE_CANNOT_BE_NEGATIVE);
-        }
 
         user.getProducts().add(product);
         user.updateCaffeineInformation(product.getCaffeine(), canCaffeineIntakeAmount);
