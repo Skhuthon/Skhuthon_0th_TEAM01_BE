@@ -31,4 +31,7 @@ public class UserService {
         String username = authentication.getName();
         return userRepository.findByUsername(username);
     }
+
+
+
 }
