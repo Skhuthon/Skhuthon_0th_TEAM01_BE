@@ -1,4 +1,4 @@
-package com.skhuthon.caffeinebalance.exception;
+package com.skhuthon.caffeinebalance.global.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

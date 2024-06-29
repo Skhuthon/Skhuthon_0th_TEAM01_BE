@@ -1,4 +1,4 @@
-package com.skhuthon.caffeinebalance.exception;
+package com.skhuthon.caffeinebalance.global.exception;
 
 import java.time.LocalDateTime;
 import lombok.Builder;
