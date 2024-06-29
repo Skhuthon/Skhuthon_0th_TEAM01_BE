@@ -61,13 +61,13 @@ public class ProductResponseDTO {
 
     @Getter
     @Builder
-    public static class RecommendProduct {
+    public static class ProductInfo {
         private String brand;
         private String menu;
         private double caffeine;
 
-        public static ProductResponseDTO.RecommendProduct from(Product product) {
-            return RecommendProduct.builder()
+        public static ProductInfo from(Product product) {
+            return ProductInfo.builder()
                     .brand(product.getBrand())
                     .menu(product.getMenu())
                     .caffeine(product.getCaffeine())
