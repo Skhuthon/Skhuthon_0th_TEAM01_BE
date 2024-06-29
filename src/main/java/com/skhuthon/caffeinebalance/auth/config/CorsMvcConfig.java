@@ -17,6 +17,7 @@ public class CorsMvcConfig implements WebMvcConfigurer {
                 .allowedOrigins(
                         "http://localhost:8080",
                         "http://localhost:5173",
+                        "https://caffeine-olive.vercel.app/",
                         prodUrl)
                 .allowedMethods(
                         HttpMethod.GET.name(),
