@@ -10,6 +10,7 @@ public enum ErrorCode {
 
     /* 400 BAD_REQUEST : 잘못된 요청 */
     INVALID_ATTRIBUTE_TYPE_MESSAGE(HttpStatus.BAD_REQUEST, "잘못된 응답 속성 유형입니다."),
+    CAFFEINE_CANNOT_BE_NEGATIVE(HttpStatus.BAD_REQUEST, "카페인은 음수가 될 수 없습니다"),
 
     /* 401 UNAUTHORIZED : 인증되지 않은 사용자 */
     INVALID_USER(HttpStatus.UNAUTHORIZED, "인증되지 않은 사용자입니다."),
