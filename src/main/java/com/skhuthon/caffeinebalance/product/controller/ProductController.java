@@ -95,8 +95,8 @@ public class ProductController {
                     @ApiResponse(responseCode = "400", description = "잘못된 요청"),
                     @ApiResponse(responseCode = "500", description = "관리자 문의")
             })
-    public ResponseEntity<UserCaffeineResponseDTO> updateCaffeineInfo(double caffeine) {
-        UserCaffeineResponseDTO userCaffeineResponseDTO = productService.updateTodayCaffeineInformation(caffeine);
+    public ResponseEntity<UserCaffeineResponseDTO> updateCaffeineInfo(Long productId) {
+        UserCaffeineResponseDTO userCaffeineResponseDTO = productService.updateTodayCaffeineInformation(productId);
         return new ResponseEntity<>(userCaffeineResponseDTO, HttpStatus.OK);
     }
     @GetMapping("/recommend")
