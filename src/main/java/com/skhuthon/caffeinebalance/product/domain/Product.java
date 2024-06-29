@@ -1,6 +1,5 @@
-package com.skhuthon.caffeinebalance.Product.domain;
+package com.skhuthon.caffeinebalance.product.domain;
 
-import com.skhuthon.caffeinebalance.user.domain.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

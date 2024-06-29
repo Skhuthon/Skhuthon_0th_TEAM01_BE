@@ -1,10 +1,10 @@
-package com.skhuthon.caffeinebalance.Product.controller;
+package com.skhuthon.caffeinebalance.product.controller;
 
-import com.skhuthon.caffeinebalance.Product.dto.request.ProductRequestDTO;
-import com.skhuthon.caffeinebalance.Product.dto.request.ProductRequestDTO.KeyWord;
-import com.skhuthon.caffeinebalance.Product.dto.response.ProductResponseDTO;
-import com.skhuthon.caffeinebalance.Product.dto.response.ProductResponseDTO.Products;
-import com.skhuthon.caffeinebalance.Product.service.ProductService;
+import com.skhuthon.caffeinebalance.product.dto.request.ProductRequestDTO;
+import com.skhuthon.caffeinebalance.product.dto.request.ProductRequestDTO.KeyWord;
+import com.skhuthon.caffeinebalance.product.dto.response.ProductResponseDTO;
+import com.skhuthon.caffeinebalance.product.dto.response.ProductResponseDTO.Products;
+import com.skhuthon.caffeinebalance.product.service.ProductService;
 import com.skhuthon.caffeinebalance.user.dto.response.UserCaffeineResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

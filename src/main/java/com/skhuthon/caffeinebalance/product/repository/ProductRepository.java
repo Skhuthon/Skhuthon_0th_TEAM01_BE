@@ -1,6 +1,6 @@
-package com.skhuthon.caffeinebalance.Product.repository;
+package com.skhuthon.caffeinebalance.product.repository;
 
-import com.skhuthon.caffeinebalance.Product.domain.Product;
+import com.skhuthon.caffeinebalance.product.domain.Product;
 
 import java.util.Optional;
 
@@ -25,6 +25,4 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query("select p from Product p where p.caffeine < :canCaffeineIntakeAmount")
     Optional<List<Product>> findRandomCaffeineByCanCaffeineIntakeAmount(@Param("canCaffeineIntakeAmount") double canCaffeineIntakeAmount);
-
-
 }
