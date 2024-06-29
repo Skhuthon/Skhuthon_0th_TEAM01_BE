@@ -26,6 +26,7 @@ public class JwtUserResponseDTO {
                 .role(user.getRole().name())
                 .build();
     }
+
     public static JwtUserResponseDTO createFromJwt(String username, String role) {
         return JwtUserResponseDTO.builder()
                 .username(username)
@@ -33,5 +34,4 @@ public class JwtUserResponseDTO {
                 .role(role)
                 .build();
     }
-
 }
