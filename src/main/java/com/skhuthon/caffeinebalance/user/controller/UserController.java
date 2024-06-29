@@ -34,5 +34,4 @@ public class UserController {
         UserResponseDTO userResponseDTO = userService.getUserInfo();
         return new ResponseEntity<>(userResponseDTO, HttpStatus.OK);
     }
-
 }

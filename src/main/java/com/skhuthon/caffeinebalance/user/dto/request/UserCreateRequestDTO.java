@@ -34,7 +34,6 @@ public class UserCreateRequestDTO {
     @NotNull(message = "일일 권장 카페인 양은 null이 될 수 없습니다.")
     private double dailyRecommendedCaffeineAmount;
 
-
     public User toEntity() {
         return User.builder()
                 .username(username)
