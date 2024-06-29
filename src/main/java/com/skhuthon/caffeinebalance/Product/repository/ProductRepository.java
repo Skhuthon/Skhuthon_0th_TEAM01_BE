@@ -23,8 +23,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     List<Product> findByMenuContaining(String keyword);
 
-    @Query("select p from Product p where p.caffeine < :canCaffeineIntakeAmount order by rand() limit 1")
-    Product findRandomCaffeineByCanCaffeineIntakeAmount(@Param("canCaffeineIntakeAmount") double canCaffeineIntakeAmount);
+    @Query("select p from Product p where p.caffeine < :canCaffeineIntakeAmount")
+    Optional<List<Product>> findRandomCaffeineByCanCaffeineIntakeAmount(@Param("canCaffeineIntakeAmount") double canCaffeineIntakeAmount);
 
 
 }

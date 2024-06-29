@@ -32,19 +32,19 @@ public class User {
     private String profile;
 
     @Column(name = "today_caffeine_intake_amount")
-    private Double todayCaffeineIntakeAmount;
+    private double todayCaffeineIntakeAmount;
 
     @Column(name = "can_caffeiene_intake_amount")
-    private Double canCaffeineIntakeAmount;
+    private double canCaffeineIntakeAmount;
 
     public void update(String name, String email) {
         this.name = name;
         this.email = email;
     }
 
-    public void updateCaffeineInformation(Double caffeine, Double canCaffeineIntakeAmount) {
+    public void updateCaffeineInformation(double caffeine) {
         this.todayCaffeineIntakeAmount += caffeine;
-        this.canCaffeineIntakeAmount = canCaffeineIntakeAmount;
+        this.canCaffeineIntakeAmount -= caffeine;
     }
 
 

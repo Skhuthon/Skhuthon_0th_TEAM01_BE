@@ -51,7 +51,7 @@ public class UserCreateRequestDTO {
                 .email(oAuth2Response.getEmail())
                 .profile(oAuth2Response.getProfileImage())
                 .todayCaffeineIntakeAmount(0D)
-                .canCaffeineIntakeAmount(0D)
+                .canCaffeineIntakeAmount(400D)
                 .build();
     }
 }
