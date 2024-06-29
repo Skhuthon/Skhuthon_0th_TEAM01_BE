@@ -17,7 +17,8 @@ public enum ErrorCode {
     /* 404 NOT_FOUND : 리소스를 찾을 수 없음 */
     MENU_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 메뉴입니다."),
     BRAND_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 브랜드입니다."),
-    BRAND_AND_MENU_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 메뉴브랜드입니다.");
+    BRAND_AND_MENU_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 메뉴브랜드입니다."),
+    PRODUCT_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 상품입니다.");
 
     private final HttpStatus httpStatus;
     private final String message;

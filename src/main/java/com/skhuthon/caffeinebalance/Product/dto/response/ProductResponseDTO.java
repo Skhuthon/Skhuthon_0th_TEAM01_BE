@@ -58,4 +58,20 @@ public class ProductResponseDTO {
                     .build();
         }
     }
+
+    @Getter
+    @Builder
+    public static class RecommendProduct {
+        private String menu;
+        private String brand;
+        private double caffeine;
+
+        public static RecommendProduct from(Product product) {
+            return RecommendProduct.builder()
+                    .menu(product.getMenu())
+                    .brand(product.getBrand())
+                    .caffeine(product.getCaffeine())
+                    .build();
+        }
+    }
 }

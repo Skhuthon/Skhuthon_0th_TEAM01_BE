@@ -1,10 +1,13 @@
 package com.skhuthon.caffeinebalance.Product.repository;
 
 import com.skhuthon.caffeinebalance.Product.domain.Product;
+
 import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -19,4 +22,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     Optional<Double> findCaffeineByMenu(@Param("brand") String brand, @Param("menu") String menu);
 
     List<Product> findByMenuContaining(String keyword);
+
+    @Query("select p from Product p where p.caffeine < :canCaffeineIntakeAmount order by rand() limit 1")
+    Product findRandomCaffeineByCanCaffeineIntakeAmount(@Param("canCaffeineIntakeAmount") double canCaffeineIntakeAmount);
+
+
 }
