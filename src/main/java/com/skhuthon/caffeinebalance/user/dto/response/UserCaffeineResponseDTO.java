@@ -8,13 +8,15 @@ import lombok.Getter;
 @Getter
 @Builder
 public class UserCaffeineResponseDTO {
-    private Double todayCaffeineIntakeAmount;
-    private Double canCaffeineIntakeAmount;
+    private double todayCaffeineIntakeAmount;
+    private double canCaffeineIntakeAmount;
+    private double  dailyRecommendedCaffeineAmount;
 
     public static UserCaffeineResponseDTO of(User user) {
         return UserCaffeineResponseDTO.builder()
                 .todayCaffeineIntakeAmount(user.getTodayCaffeineIntakeAmount())
                 .canCaffeineIntakeAmount(user.getCanCaffeineIntakeAmount())
+                .dailyRecommendedCaffeineAmount(user.getDailyRecommendedCaffeineAmount())
                 .build();
     }
 }

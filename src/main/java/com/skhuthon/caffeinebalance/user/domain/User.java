@@ -37,20 +37,23 @@ public class User {
     @Column(name = "can_caffeiene_intake_amount")
     private double canCaffeineIntakeAmount;
 
-    private double dailyCaffeineIntake;
+    @Column(name ="daily_recommended_Caffeine_Amount")
+    private double dailyRecommendedCaffeineAmount;
 
     public void update(String name, String email) {
         this.name = name;
         this.email = email;
     }
 
-    public void updateCaffeineInformation(double caffeine) {
+    public void updateCaffeineInformation(double caffeine, double canCaffeineIntakeAmount) {
+        this.dailyRecommendedCaffeineAmount -= caffeine;
         this.todayCaffeineIntakeAmount += caffeine;
-        this.canCaffeineIntakeAmount -= caffeine;
+        this.canCaffeineIntakeAmount = canCaffeineIntakeAmount;
     }
 
     public void resetDailyCaffeine() {
-        this.dailyCaffeineIntake = 0.0;
+        this.canCaffeineIntakeAmount = 400D;
+        this.todayCaffeineIntakeAmount= 0D;
+        this.dailyRecommendedCaffeineAmount = 400D;
     }
-
 }

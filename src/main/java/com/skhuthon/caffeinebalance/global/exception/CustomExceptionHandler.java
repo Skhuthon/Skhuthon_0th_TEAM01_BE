@@ -1,4 +1,4 @@
-package com.skhuthon.caffeinebalance.exception;
+package com.skhuthon.caffeinebalance.global.exception;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

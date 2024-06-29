@@ -15,9 +15,9 @@ public class UserResponseDTO {
     private String email;
     private String profile;
     private String role;
-    private Double todayCaffeineIntakeAmount;
-    private Double canCaffeineIntakeAmount;
-
+    private double todayCaffeineIntakeAmount;
+    private double canCaffeineIntakeAmount;
+    private double dailyRecommendedCaffeineAmount;
     public static UserResponseDTO of(User user) {
         return UserResponseDTO.builder()
                 .name(user.getName())

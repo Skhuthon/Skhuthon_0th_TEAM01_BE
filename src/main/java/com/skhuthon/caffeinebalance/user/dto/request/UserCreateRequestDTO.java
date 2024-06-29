@@ -31,6 +31,9 @@ public class UserCreateRequestDTO {
     @NotNull(message = "섭취 가능한 카페인 양은 null이 될 수 없습니다.")
     private Double canCaffeineIntakeAmount;
 
+    @NotNull(message = "일일 권장 카페인 양은 null이 될 수 없습니다.")
+    private double dailyRecommendedCaffeineAmount;
+
 
     public User toEntity() {
         return User.builder()
@@ -41,6 +44,7 @@ public class UserCreateRequestDTO {
                 .profile(profile)
                 .todayCaffeineIntakeAmount(todayCaffeineIntakeAmount)
                 .canCaffeineIntakeAmount(canCaffeineIntakeAmount)
+                .dailyRecommendedCaffeineAmount(dailyRecommendedCaffeineAmount)
                 .build();
     }
 
@@ -52,6 +56,7 @@ public class UserCreateRequestDTO {
                 .profile(oAuth2Response.getProfileImage())
                 .todayCaffeineIntakeAmount(0D)
                 .canCaffeineIntakeAmount(400D)
+                .dailyRecommendedCaffeineAmount(400D)
                 .build();
     }
 }

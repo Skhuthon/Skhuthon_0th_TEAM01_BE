@@ -1,6 +1,6 @@
-package com.skhuthon.caffeinebalance.Product.dto.response;
+package com.skhuthon.caffeinebalance.product.dto.response;
 
-import com.skhuthon.caffeinebalance.Product.domain.Product;
+import com.skhuthon.caffeinebalance.product.domain.Product;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import lombok.Builder;
