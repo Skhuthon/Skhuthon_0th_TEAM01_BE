@@ -82,9 +82,9 @@ public class ProductController {
                     @ApiResponse(responseCode = "400", description = "잘못된 요청"),
                     @ApiResponse(responseCode = "500", description = "관리자 문의")
             })
-    public ResponseEntity<Products> searchCaffeineByKeyword(@Valid @RequestParam KeyWord keyword) {
-        Products caffeineSearchDTO = productService.getMenuSearchList(keyword);
-        return new ResponseEntity<>(caffeineSearchDTO, HttpStatus.OK);
+    public ResponseEntity<List<ProductResponseDTO.Products>> searchCaffeineByKeyword(@Valid @RequestParam KeyWord keyword) {
+        List<ProductResponseDTO.Products> products = productService.getMenuSearchList(keyword);
+        return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
 

@@ -38,13 +38,14 @@ public class ProductService {
     }
 
     public ProductResponseDTO.Caffeine getCaffeineByMenu(ProductRequestDTO.Brand brand, ProductRequestDTO.Menu menu) {
-        Double caffeine = fetchCaffeineByMenu(brand, menu);
-        return ProductResponseDTO.Caffeine.from(caffeine);
+        Product product = productRepository.findCaffeineByMenu(brand.getBrand(), menu.getMenu()).orElseThrow(
+                () -> new CustomException(ErrorCode.PRODUCT_NOT_FOUND));
+        return ProductResponseDTO.Caffeine.from(product);
     }
 
-    public Products getMenuSearchList(ProductRequestDTO.KeyWord keyword) {
-        List<Product> caffeineList = fetchMenuSearchList(keyword);
-        return Products.from(caffeineList);
+    public List<ProductResponseDTO.Products> getMenuSearchList(ProductRequestDTO.KeyWord keyword) {
+        List<Product> products = fetchMenuSearchList(keyword);
+        return products.stream().map(Products::from).toList();
     }
 
     @Transactional
@@ -88,11 +89,6 @@ public class ProductService {
     private List<String> fetchMenuByBrand(ProductRequestDTO.Brand brand) {
         return productRepository.findMenuByBrand(brand.getBrand()).orElseThrow(
                 () -> new CustomException(ErrorCode.BRAND_NOT_FOUND));
-    }
-
-    private Double fetchCaffeineByMenu(ProductRequestDTO.Brand brand, ProductRequestDTO.Menu menu) {
-        return productRepository.findCaffeineByMenu(brand.getBrand(), menu.getMenu()).orElseThrow(
-                () -> new CustomException(ErrorCode.BRAND_AND_MENU_NOT_FOUND));
     }
 
     private List<Product> fetchMenuSearchList(ProductRequestDTO.KeyWord keyword) {

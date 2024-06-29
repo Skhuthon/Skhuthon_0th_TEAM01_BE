@@ -2,6 +2,7 @@ package com.skhuthon.caffeinebalance.product.repository;
 
 import com.skhuthon.caffeinebalance.product.domain.Product;
 
+import com.skhuthon.caffeinebalance.product.dto.response.ProductResponseDTO;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,8 +19,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("select p.menu from Product p where p.brand = :brand")
     Optional<List<String>> findMenuByBrand(@Param("brand") String brand);
 
-    @Query("select p.caffeine from Product p where p.brand = :brand and p.menu = :menu")
-    Optional<Double> findCaffeineByMenu(@Param("brand") String brand, @Param("menu") String menu);
+    @Query("select p from Product p where p.brand = :brand and p.menu = :menu")
+    Optional<Product> findCaffeineByMenu(@Param("brand") String brand, @Param("menu") String menu);
 
     List<Product> findByMenuContaining(String keyword);
 
